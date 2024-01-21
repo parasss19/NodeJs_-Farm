@@ -176,6 +176,13 @@ const data = fileSystem.readFileSync(`${__dirname}/dev-data/data.json`, 'utf-8')
 const dataObj = JSON.parse(data);
 
 
+//using slugify
+const slugs = dataObj.map((el) => (
+    slugify( el.productName, { lower:true } )
+))
+console.log(slugs)
+
+
 const server = http.createServer((req, res) => {
     // console.log(req.url)     //it will print only this part of the url --> /product?id=0
 
@@ -232,5 +239,3 @@ const server = http.createServer((req, res) => {
 server.listen(8000, '127.0.0.1', () => {
     console.log("Listening the response")
 })
-
-
